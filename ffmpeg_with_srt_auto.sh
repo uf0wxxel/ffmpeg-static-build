@@ -112,9 +112,7 @@ if [ "$libpulse_reponse" = "yes" ]; then
 	wget -O pulseaudio-16.1.tar.xz https://freedesktop.org/software/pulseaudio/releases/pulseaudio-16.1.tar.xz && \
 	tar xJvf pulseaudio-16.1.tar.xz && \
 	cd pulseaudio-16.1 && \
-	meson configure -Dman=false && \
-	meson configure -Dtests=false && \
-	PATH="$HOME/bin:$PATH" PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig:/usr/lib/x86_64-linux-gnu/pkgconfig" meson --prefix="$HOME/ffmpeg_build" build && \
+	PATH="$HOME/bin:$PATH" PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig:/usr/lib/x86_64-linux-gnu/pkgconfig" meson --prefix="$HOME/ffmpeg_build" -Dman=false -Dtests=false build && \
 	ninja -C build install
 else
 	printf "\n\nlibpulse will be skipped\n\n"
