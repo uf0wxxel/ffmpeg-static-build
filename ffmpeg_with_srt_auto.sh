@@ -16,7 +16,6 @@ sudo apt-get update -qq && sudo apt-get -y install \
   build-essential \
   cmake \
   git-core \
-  libass-dev \
   libfreetype6-dev \
   libsdl2-dev \
   libtool \
@@ -33,7 +32,7 @@ sudo apt-get update -qq && sudo apt-get -y install \
 
 echo -n "installing dependencies as mentioned in https://seanthegeek.net/455/how-to-compile-and-install-ffmpeg-4-0-on-debian-ubuntu/"
 sudo apt-get -y install build-essential autoconf automake cmake libtool git \
-checkinstall nasm yasm libass-dev libfreetype6-dev libsdl2-dev libtool \
+checkinstall nasm yasm libfreetype6-dev libsdl2-dev libtool \
 libva-dev libvdpau-dev libvorbis-dev libxcb1-dev libxcb-shm0-dev \
 libxcb-xfixes0-dev pkg-config texinfo wget zlib1g-dev libchromaprint-dev \
 frei0r-plugins-dev gnutls-dev ladspa-sdk libcaca-dev libcdio-paranoia-dev \
@@ -71,17 +70,6 @@ wget -O yasm-1.3.0.tar.gz https://www.tortall.net/projects/yasm/releases/yasm-1.
 tar xzvf yasm-1.3.0.tar.gz && \
 cd yasm-1.3.0 && \
 ./configure --prefix="$HOME/ffmpeg_build" --bindir="$HOME/bin" && \
-make && \
-make install
-
-# install libass
-echo -n "compile / install - libass"
-cd ~/ffmpeg_sources && \
-wget -O libass-0.14.0.tar.xz https://github.com/libass/libass/releases/download/0.14.0/libass-0.14.0.tar.xz && \
-tar xJvf libass-0.14.0.tar.xz && \
-cd libass-0.14.0 && \
-autoreconf -fiv && \
-PATH="$HOME/bin:$PATH" ./configure --prefix="$HOME/ffmpeg_build" --disable-shared && \
 make && \
 make install
 
@@ -129,7 +117,6 @@ if [ "$libpulse_reponse" = "yes" ]; then
 else
 	printf "\n\nlibpulse will be skipped\n\n"
 fi
-
 
 # install latest libaom
 # OPTIONAL - THIS STEP CAN BE SKIPPED
@@ -199,7 +186,6 @@ PATH="$HOME/bin:$PATH" PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig:/usr/li
   --enable-ffplay \
   --enable-gpl \
   --enable-libaom \
-  --enable-libass \
   --enable-libfdk-aac \
   --enable-libfreetype \
   --enable-libmp3lame \
