@@ -74,6 +74,17 @@ cd yasm-1.3.0 && \
 make && \
 make install
 
+# install libass
+echo -n "compile / install - libass"
+cd ~/ffmpeg_sources && \
+wget -O libass-0.14.0.tar.xz https://github.com/libass/libass/releases/download/0.14.0/libass-0.14.0.tar.xz && \
+tar xJvf libass-0.14.0.tar.xz && \
+cd libass-0.14.0 && \
+autoreconf -fiv && \
+PATH="$HOME/bin:$PATH" ./configure --prefix="$HOME/ffmpeg_build" --disable-shared && \
+make && \
+make install
+
 # install latest x264
 echo -n "compile / install - x264"
 cd ~/ffmpeg_sources && \
