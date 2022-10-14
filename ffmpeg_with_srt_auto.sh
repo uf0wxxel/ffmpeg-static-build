@@ -115,14 +115,15 @@ PATH="$HOME/bin:$PATH" ./configure --prefix="$HOME/ffmpeg_build" --disable-share
 make && \
 make install
 
-# install latest libpulse
+# install libpulse
 # OPTIONAL - THIS STEP CAN BE SKIPPED
 if [ "$libpulse_reponse" = "yes" ]; then
 	printf "compile / install - libpulse"
 	sudo apt-get install libsndfile1-dev autopoint libtdb-dev -y && \
 	cd ~/ffmpeg_sources && \
-	git -C pulseaudio pull 2> /dev/null || git clone --depth 1 https://anongit.freedesktop.org/git/pulseaudio/pulseaudio.git && \
-	cd pulseaudio && \
+	wget -O pulseaudio-16.1.tar.xz https://freedesktop.org/software/pulseaudio/releases/pulseaudio-16.1.tar.xz && \
+	tar xJvf pulseaudio-16.1.tar.xz && \
+	cd pulseaudio-16.1 && \
 	PATH="$HOME/bin:$PATH" PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig:/usr/lib/x86_64-linux-gnu/pkgconfig" meson --prefix="$HOME/ffmpeg_build" build && \
 	ninja -C build install
 else
