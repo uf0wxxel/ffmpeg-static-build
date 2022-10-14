@@ -10,7 +10,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: main-build
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install Python Dependencies
+        run: pip install meson ninja
+
+      - name: Build
         run: bash ffmpeg_with_srt_auto.sh
 
       - name: Artifact
