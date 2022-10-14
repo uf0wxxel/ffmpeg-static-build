@@ -107,7 +107,7 @@ make install
 # OPTIONAL - THIS STEP CAN BE SKIPPED
 if [ "$libpulse_reponse" = "yes" ]; then
 	printf "compile / install - libpulse"
-	sudo apt-get install libsndfile1-dev autopoint libtdb-dev -y && \
+	sudo apt-get install libsndfile1-dev autopoint libtdb-dev doxygen -y && \
 	cd ~/ffmpeg_sources && \
 	wget -O pulseaudio-16.1.tar.xz https://freedesktop.org/software/pulseaudio/releases/pulseaudio-16.1.tar.xz && \
 	tar xJvf pulseaudio-16.1.tar.xz && \
