@@ -112,7 +112,7 @@ if [ "$libpulse_reponse" = "yes" ]; then
 	wget -O pulseaudio-16.1.tar.xz https://freedesktop.org/software/pulseaudio/releases/pulseaudio-16.1.tar.xz && \
 	tar xJvf pulseaudio-16.1.tar.xz && \
 	cd pulseaudio-16.1 && \
-	PATH="$HOME/bin:$PATH" PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig:/usr/lib/x86_64-linux-gnu/pkgconfig" meson --prefix="$HOME/ffmpeg_build" -Dman=false -Dtests=false -Ddaemon=false -Ddoxygen=false build && \
+	PATH="$HOME/bin:$PATH" meson --prefix="$HOME/ffmpeg_build" -Dman=false -Dtests=false -Ddaemon=false -Ddoxygen=false build && \
 	ninja -C build install
 else
 	printf "\n\nlibpulse will be skipped\n\n"
@@ -175,7 +175,7 @@ cd ~/ffmpeg_sources && \
 wget -O ffmpeg-snapshot.tar.bz2 https://ffmpeg.org/releases/ffmpeg-snapshot.tar.bz2 && \
 tar xjvf ffmpeg-snapshot.tar.bz2 && \
 cd ffmpeg && \
-PATH="$HOME/bin:$PATH" PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig:/usr/lib/x86_64-linux-gnu/pkgconfig" ./configure \
+PATH="$HOME/bin:$PATH" PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig:$HOME/ffmpeg_build/lib/x86_64-linux-gnu/pkgconfig:/usr/lib/x86_64-linux-gnu/pkgconfig" ./configure \
   --prefix="$HOME/ffmpeg_build" \
   --pkg-config-flags="--static" \
   --extra-cflags="-I$HOME/ffmpeg_build/include" \
